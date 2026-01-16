@@ -2,8 +2,7 @@ import streamlit as st
 import pandas as pd
 from snowflake.snowpark.context import get_active_session
 
-## Use this for Streamlit Community Cloud deployment
-session = st.connection("snowflake").session()
+
 
 # --- Constants and Configuration ---
 MODELS = ['claude-3-5-sonnet', 'mistral-large', 'gemma-7b', 'llama3-8b']
@@ -162,7 +161,8 @@ def main():
 # --- Entry Point ---
 if __name__ == "__main__":
     try:
-        session = get_active_session()
+        ## Use this for Streamlit Community Cloud deployment
+        session = st.connection("snowflake").session()
         main()
     except Exception as e:
         st.error(f"Failed to get active Snowflake session: {e}")
